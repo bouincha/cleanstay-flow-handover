@@ -1,0 +1,1957 @@
+[
+  {
+    "name": "HouseKeeping - Best Version",
+    "variables": {},
+    "secrets": {},
+    "nodes": [
+      {
+        "id": "ed691a27-1ed1-46f6-b14c-501f42d8412c",
+        "position": {
+          "x": 56.92031476153224,
+          "y": 102.58145568426656
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const body = input.body || input;\nconst errors = [];\nif (!body.taskId) errors.push('taskId is required');\nif (!body.propertyId) errors.push('propertyId is required');\nif (!body.taskType) errors.push('taskType is required');\nconst validTypes = ['cleaning', 'maintenance', 'quality_check'];\nif (body.taskType && !validTypes.includes(body.taskType)) errors.push('taskType must be cleaning|maintenance|quality_check');\nif (!body.checkIn) errors.push('checkIn is required');\nif (body.checkIn && isNaN(new Date(body.checkIn).getTime())) errors.push('checkIn must be a valid date');\nreturn {\n  taskId: body.taskId || null,\n  propertyId: body.propertyId || null,\n  bookingRef: body.bookingRef || null,\n  taskType: body.taskType || null,\n  status: body.status || 'NEW',\n  agent: body.agent || null,\n  checkIn: body.checkIn || null,\n  vipGuest: body.vipGuest === true,\n  incidentReported: body.incidentReported === true,\n  incidentDetail: body.incidentDetail || '',\n  qcStatus: body.qcStatus || 'pending',\n  notes: body.notes || '',\n  valid: errors.length === 0,\n  errors: errors\n};"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "f6f913db-7444-4b31-bdc6-d170819a292f",
+        "position": {
+          "x": -488.630320234853,
+          "y": 56.688939823891474
+        },
+        "type": "trigger",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "webhook",
+          "label": "Webhook - Task Event",
+          "inputs": {},
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Triggers workflow on incoming HTTP requests",
+          "showRunningStatus": false,
+          "parameters": {
+            "method": "all",
+            "auth": {
+              "type": "none"
+            },
+            "respondType": "immediate",
+            "path": "/cleanstay-task"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "eeaef849-e41a-4144-ba8e-eb81438b8cca",
+        "position": {
+          "x": -361.414810563237,
+          "y": 195.94757463748118
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "672c92cc-ba97-4d3b-b65a-4e897f7c4abf",
+        "position": {
+          "x": 155.8855401552654,
+          "y": 355.5906320651949
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log1",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "a66e7cde-c38f-4e0d-ac03-71f6e039fb60",
+        "position": {
+          "x": 1034.7173474201209,
+          "y": -173.10275384541973
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log2",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "822aa91e-ca53-4571-826a-b9696f19726c",
+        "position": {
+          "x": 887.116919676598,
+          "y": 564.1372270247405
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log3",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "ce5f3cf1-79ba-41ff-9fac-9a1f0cc9d871",
+        "position": {
+          "x": 1425.8630433029205,
+          "y": 410.54850227411146
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log4",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "5deeec08-414e-4ce8-8939-dc8f5da53254",
+        "position": {
+          "x": 2029.1857154269646,
+          "y": -51.6016738717788
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log5",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "ebbbbe43-0115-43f1-a3b6-3a87691e19e6",
+        "position": {
+          "x": 3261.1857154269646,
+          "y": -217.60167387177881
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log7",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "0bb03bfe-e54f-4a8f-a919-4c41fe6cda9e",
+        "position": {
+          "x": 3245.1857154269646,
+          "y": 360.3983261282212
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log10",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "3a4a1cfc-6caa-4dd4-8ed8-290ea14a5537",
+        "position": {
+          "x": 4094.315667082579,
+          "y": -152.30006354296694
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log8",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "3214f1e8-f8fa-4b58-b75f-581d4d784465",
+        "position": {
+          "x": 4988.315667082579,
+          "y": -566.3000635429669
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log14",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "d5bkqrxgpgwfzivwhtpyzk3o",
+        "position": {
+          "x": 4546.315667082579,
+          "y": -282.3000635429669
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log15",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "d8e7481c-71f3-4cd8-8f1f-d048691f3958",
+        "position": {
+          "x": 4063.1857154269646,
+          "y": 514.3983261282212
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log9",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "1402366e-90b3-4831-92ae-398be6d8e925",
+        "position": {
+          "x": 4601.185715426965,
+          "y": 494.3983261282212
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log16",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "8b734959-d1c8-4b9a-a062-22dc01cb861e",
+        "position": {
+          "x": 5133.185715426965,
+          "y": 314.3983261282212
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log17",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "3125e4cb-3e33-4e5e-b475-31bfb735ccae",
+        "position": {
+          "x": 2295.1826971199607,
+          "y": 334.69385955517373
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log6",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "c348660d-de42-4306-b41f-8b4227819de8",
+        "position": {
+          "x": 431.1276099602062,
+          "y": 75.26910335133806
+        },
+        "type": "utility",
+        "width": 64,
+        "height": 68,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "if-else",
+          "label": "If-Else - Task Valid?",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "true": {
+              "label": "True"
+            },
+            "false": {
+              "label": "False"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "TRUE if the task is valid, FALSE rejects it",
+          "showRunningStatus": false,
+          "parameters": {
+            "condition": "input.valid === true"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "6a4d771b-9fbf-4f21-a94d-b43ceb3bee23",
+        "position": {
+          "x": 658.2393504152247,
+          "y": -34.87988392201971
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Build Rejection",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "return {\n  _action: 'REJECTED',\n  taskId: input.taskId,\n  propertyId: input.propertyId,\n  valid: false,\n  errors: input.errors,\n  status: 'BLOCKED - invalid CleanStay task',\n  createdAt: new Date().toISOString()\n};"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "14be30d9-6105-4028-baee-bff1533d2c62",
+        "position": {
+          "x": 656.8525307940214,
+          "y": 202.01408751810106
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Normalize Status",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const s = String(input.status || 'NEW').toUpperCase();\nconst status = (s === 'IN_PROGRESS' || s === 'COMPLETED') ? s : 'NEW';\nreturn { ...input, status: status, normalizedAt: new Date().toISOString() };"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "c97cee65-65cd-4cf9-b185-723c698a82b9",
+        "position": {
+          "x": 1148.753977338728,
+          "y": 190.001572043237
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Delay and Risk",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const now = Date.now();\nconst checkIn = new Date(input.checkIn).getTime();\nconst hoursLeft = (checkIn - now) / 3600000;\nconst slaBreach = checkIn < now;\nlet score = 0;\nif (input.vipGuest) score += 50;\nif (hoursLeft <= 3) score += 40;\nelse if (hoursLeft <= 8) score += 20;\nif (input.taskType === 'maintenance') score += 15;\nif (slaBreach) score += 30;\nif (input.status === 'COMPLETED') score = 0;\nconst priority = score >= 50 ? 'high' : (score >= 25 ? 'medium' : 'low');\nlet riskLevel = 'ready';\nif (input.status !== 'COMPLETED' && (slaBreach || score >= 50)) riskLevel = 'not_ready';\nelse if (input.status !== 'COMPLETED' && score >= 25) riskLevel = 'at_risk';\nreturn {\n  ...input,\n  priorityScore: score,\n  priority: priority,\n  riskLevel: riskLevel,\n  slaBreach: slaBreach,\n  hoursLeft: Math.round(hoursLeft * 10) / 10\n};"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "a527a53c-9443-4ba7-b4e0-4584d1f24b65",
+        "position": {
+          "x": 1493.5756494362413,
+          "y": 193.68638309730622
+        },
+        "type": "utility",
+        "width": 64,
+        "height": 68,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "if-else",
+          "label": "If-Else - Incident or QC Failed?",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "true": {
+              "label": "True"
+            },
+            "false": {
+              "label": "False"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes different branches based on a condition",
+          "showRunningStatus": false,
+          "parameters": {
+            "condition": "input.incidentReported === true || input.qcStatus === 'failed'"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "58e54403-7e47-4906-aea7-9c0114d4dd55",
+        "position": {
+          "x": 1823.3563887879493,
+          "y": 69.50940456273966
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Create Rework Task",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "return {\n  taskId: (input.taskId || 'UNK') + '-RW',\n  propertyId: input.propertyId,\n  bookingRef: input.bookingRef,\n  taskType: 'maintenance',\n  status: 'NEW',\n  agent: null,\n  checkIn: input.checkIn,\n  vipGuest: input.vipGuest,\n  incidentReported: false,\n  incidentDetail: '',\n  qcStatus: 'pending',\n  notes: 'REWORK from ' + input.taskId + ': ' + (input.incidentDetail || input.qcStatus),\n  valid: true,\n  errors: [],\n  priorityScore: 40,\n  priority: 'high',\n  riskLevel: 'at_risk',\n  slaBreach: false,\n  hoursLeft: input.hoursLeft,\n  isRework: true,\n  parentTask: input.taskId,\n  createdAt: new Date().toISOString()\n};"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "17fce00d-1cd2-407e-9b2a-43dd17aea714",
+        "position": {
+          "x": 2084.5753249884547,
+          "y": 205.90625933590562
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Assign and Route",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const roster = [\n  { name: 'Sara', activeTasks: 2, available: true },\n  { name: 'Omar', activeTasks: 5, available: true },\n  { name: 'Yasmine', activeTasks: 1, available: true },\n  { name: 'Mehdi', activeTasks: 3, available: true }\n];\nlet assigned = input.agent || null;\nif (!assigned && input.status !== 'COMPLETED') {\n  const free = roster.filter(r => r.available).sort((a, b) => a.activeTasks - b.activeTasks);\n  assigned = free.length > 0 ? free[0].name : null;\n}\nreturn {\n  ...input,\n  assignedAgent: assigned,\n  assignmentMode: input.agent ? 'kept' : 'auto',\n  assignedAt: new Date().toISOString()\n};"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "57a256fa-3f73-47d9-a78d-e8a4a6848528",
+        "position": {
+          "x": 2601.276188442554,
+          "y": 114.51723658966034
+        },
+        "type": "utility",
+        "width": 64,
+        "height": 68,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "if-else",
+          "label": "If-Else - Critical?",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "true": {
+              "label": "True"
+            },
+            "false": {
+              "label": "False"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes different branches based on a condition",
+          "showRunningStatus": false,
+          "parameters": {
+            "condition": "input.riskLevel === 'not_ready' || input.priority === 'high'"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "d2009e38-eaa5-4140-ad0a-a09ea199613f",
+        "position": {
+          "x": 3049.3229341038505,
+          "y": -75.48276341033966
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "http-request",
+          "label": "Escalate",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Performs an HTTP request to a specified URL.",
+          "showRunningStatus": true,
+          "parameters": {
+            "method": "POST",
+            "authType": "none",
+            "responseType": "json",
+            "url": "https://stg-orch-api.abafusion.ai/webhook/webhook-bb00d793-4ebf-4f40-b249-84a7df056161/manager",
+            "bodyType": "json",
+            "body": {
+              "$expr": "output",
+              "node": "Function - Assign and Route",
+              "outputId": "success"
+            }
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "c0bbe829-7197-4e32-a090-327291319d4c",
+        "position": {
+          "x": 4825.3229341038505,
+          "y": 216.5669344656369
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "http-request",
+          "label": "HTTP Request - Airtable TeamTasks",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Saves the team task to the Airtable TeamTasks table",
+          "showRunningStatus": true,
+          "parameters": {
+            "method": "POST",
+            "authType": "bearer",
+            "responseType": "json",
+            "url": "https://api.airtable.com/v0/appevYhjW5w5NK4Np/CriticalAlerts",
+            "bearerToken": "pattzJdNpYf1SMaCy.efedcdd2bf2884a3ec1a91a264a53e2957a48ea271b9e92500a043495f4030b3",
+            "bodyType": "json",
+            "body": {
+              "$expr": "output",
+              "node": "Function - Format Team Task",
+              "outputId": "success"
+            }
+          },
+          "_morphing": false
+        },
+        "selected": true
+      },
+      {
+        "id": "34a937c3-66d0-473d-88c1-168e5c84c577",
+        "position": {
+          "x": 3047.3229341038505,
+          "y": 236.51723658966034
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "http-request",
+          "label": "Notify Team",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Performs an HTTP request to a specified URL.",
+          "showRunningStatus": true,
+          "parameters": {
+            "method": "POST",
+            "authType": "none",
+            "responseType": "json",
+            "bodyType": "json",
+            "body": {
+              "$expr": "output",
+              "node": "Function - Assign and Route",
+              "outputId": "success"
+            },
+            "url": "https://stg-orch-api.abafusion.ai/webhook/webhook-a4bfa0d2-65da-44f0-9fff-4d4476dc3fad/Team"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "bb00d793-4ebf-4f40-b249-84a7df056161",
+        "position": {
+          "x": 3785.346306934499,
+          "y": -303.48276341033966
+        },
+        "type": "trigger",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "webhook",
+          "label": "Escalate",
+          "inputs": {},
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Triggers workflow on incoming HTTP requests",
+          "showRunningStatus": false,
+          "parameters": {
+            "method": "all",
+            "auth": {
+              "type": "none"
+            },
+            "respondType": "immediate",
+            "path": "/manager"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "a4bfa0d2-65da-44f0-9fff-4d4476dc3fad",
+        "position": {
+          "x": 3851.346306934499,
+          "y": 358.51723658966034
+        },
+        "type": "trigger",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "webhook",
+          "label": "Notify Team",
+          "inputs": {},
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Triggers workflow on incoming HTTP requests",
+          "showRunningStatus": false,
+          "parameters": {
+            "method": "all",
+            "auth": {
+              "type": "none"
+            },
+            "respondType": "immediate",
+            "path": "/Team"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "96a76760-181f-41a0-8d4c-dd5ca8b44373",
+        "position": {
+          "x": 4238.621248060423,
+          "y": -508.23507009284583
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Format Manager Alert",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const t = input.body || input;\nconst fields = {\n  TaskId: t.taskId || '',\n  Property: t.propertyId || '',\n  Booking: t.bookingRef || '',\n  Type: t.taskType || '',\n  Status: t.status || 'NEW',\n  Priority: t.priority || 'low',\n  Risk: t.riskLevel || 'ready',\n  Agent: t.assignedAgent || t.agent || '',\n  Notes: t.notes || '',\n  Channel: 'escalation',\n  ReceivedAt: new Date().toISOString()\n};\nif (t.checkIn) fields.CheckIn = t.checkIn;\nreturn { records: [{ fields: fields }] };"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "8a068c14-c526-4900-8ece-7d3eeb9d8c60",
+        "position": {
+          "x": 4480.621248060423,
+          "y": 329.35627984084056
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "function",
+          "label": "Function - Format Team Task",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const t = input.body || input;\nconst fields = {\n  TaskId: t.taskId || '',\n  Property: t.propertyId || '',\n  Booking: t.bookingRef || '',\n  Type: t.taskType || '',\n  Status: t.status || 'NEW',\n  Priority: t.priority || 'low',\n  Risk: t.riskLevel || 'ready',\n  Agent: t.assignedAgent || t.agent || '',\n  Notes: t.notes || '',\n  Channel: 'team',\n  ReceivedAt: new Date().toISOString()\n};\nif (t.checkIn) fields.CheckIn = t.checkIn;\nreturn { records: [{ fields: fields }] };"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "60f9d1d6-a46e-4cfa-9321-76c7bdcc0341",
+        "position": {
+          "x": 4700,
+          "y": -440
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "http-request",
+          "label": "HTTP Request - Airtable CriticalAlerts",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Saves the escalation to the Airtable CriticalAlerts table",
+          "showRunningStatus": true,
+          "parameters": {
+            "method": "POST",
+            "authType": "bearer",
+            "responseType": "json",
+            "url": "https://api.airtable.com/v0/appevYhjW5w5NK4Np/CriticalAlerts",
+            "bearerToken": "pattzJdNpYf1SMaCy.efedcdd2bf2884a3ec1a91a264a53e2957a48ea271b9e92500a043495f4030b3",
+            "bodyType": "json",
+            "body": {
+              "$expr": "output",
+              "node": "Function - Format Manager Alert",
+              "outputId": "success"
+            }
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "q39orwrmgncu7tcwqq7v035x",
+        "position": {
+          "x": 808.0562722326149,
+          "y": 1119.8824649535773
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "data": {
+          "name": "http-request",
+          "label": "GET TeamTasks Open",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Performs an HTTP request to a specified URL.",
+          "showRunningStatus": true,
+          "parameters": {
+            "method": "GET",
+            "authType": "bearer",
+            "responseType": "json",
+            "bearerToken": "pattzJdNpYf1SMaCy.efedcdd2bf2884a3ec1a91a264a53e2957a48ea271b9e92500a043495f4030b3",
+            "url": "https://api.airtable.com/v0/appevYhjW5w5NK4Np/CriticalAlerts"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "s0h95nazfrg5k3zy2hdyeycg",
+        "position": {
+          "x": 1252.056272232615,
+          "y": 977.8824649535773
+        },
+        "type": "action",
+        "width": 64,
+        "height": 64,
+        "data": {
+          "name": "function",
+          "label": "Function - Shift Context",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Executes custom JavaScript code on the input data.",
+          "showRunningStatus": true,
+          "parameters": {
+            "code": "const recs = (input.body && input.body.records) || input.records || [];\nconst tasks = recs\n  .map((rec) => {\n    const f = rec.fields || {};\n    return {\n      taskId: f.TaskId || '',\n      propertyId: f.Property || '',\n      bookingRef: f.Booking || '',\n      taskType: f.Type || '',\n      status: f.Status || 'NEW',\n      priority: f.Priority || 'low',\n      riskLevel: f.Risk || 'ready',\n      assignedAgent: f.Agent || '',\n      checkIn: f.CheckIn || '',\n      channel: f.Channel || ''\n    };\n  })\n  .filter((t) => t.status !== 'COMPLETED');\nconst critical = tasks.filter((t) => t.riskLevel === 'not_ready' || t.priority === 'high');\nreturn {\n  openCount: tasks.length,\n  criticalCount: critical.length,\n  openTasks: tasks,\n  criticalTasks: critical,\n  generatedAt: new Date().toISOString()\n};"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "hmthkjx5qze29b7vwu3a4fue",
+        "position": {
+          "x": 1066.056272232615,
+          "y": 1399.8824649535773
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log19",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "tcyoatizp7dsapnpul0vuhdz",
+        "position": {
+          "x": 1482.056272232615,
+          "y": 1157.8824649535773
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log21",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "s6qcnnzbrboeknrztbgvj6z8",
+        "position": {
+          "x": 2346.056272232615,
+          "y": 1035.8824649535773
+        },
+        "type": "display",
+        "width": 256,
+        "height": 100,
+        "dragHandle": ".drag-handle__custom",
+        "data": {
+          "name": "log",
+          "label": "Log22",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success",
+              "isConnectable": false
+            }
+          },
+          "description": "Logs the input data to the console.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "nw8tgh3i64zbkati0jrcsqvq",
+        "position": {
+          "x": 1900.056272232615,
+          "y": 858.7912007053053
+        },
+        "type": "agent",
+        "width": 96,
+        "height": 96,
+        "data": {
+          "name": "agent",
+          "label": "Agent - Shift Handover Analyst",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "An AI agent that can perform tasks using nodes as tools based on user input.",
+          "showRunningStatus": true,
+          "parameters": {
+            "systemPrompt": "You are the shift handover analyst for CleanStay Flow, a rental concierge agency.\nYou receive the end-of-shift context: open housekeeping tasks with status, priority and risk level.\nYour job:\n1. Write a 3-line factual summary of the shift.\n2. List unfinished tasks ordered by priority with owner and deadline.\n3. Flag risks for upcoming check-ins (VIP guests, SLA breaches, failed quality control).\n4. Give max 3 clear action items for the incoming team.\nReturn plain concise text. You only recommend — the incoming shift manager validates and decides",
+            "threadId": "cleanstay-handover"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "fwynxkq03dlsnoq23uk6f9pc",
+        "position": {
+          "x": 2010.056272232615,
+          "y": 1144.7912007053053
+        },
+        "type": "agent-llm",
+        "width": 64,
+        "height": 64,
+        "data": {
+          "name": "groq-llm",
+          "label": "Groq LLM1",
+          "inputs": {
+            "input": {
+              "label": "Input"
+            }
+          },
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "A node that uses Groq's ultra-fast LLM inference.",
+          "showRunningStatus": true,
+          "parameters": {
+            "model": "groq/compound-mini",
+            "apiKey": "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"
+          },
+          "_morphing": false
+        },
+        "selected": false
+      },
+      {
+        "id": "bl7qxksps9gor0flk51gb46q",
+        "position": {
+          "x": 532.2776975960551,
+          "y": 1012.7912007053053
+        },
+        "type": "trigger",
+        "width": 64,
+        "height": 64,
+        "data": {
+          "name": "manual-trigger",
+          "label": "Manual Trigger",
+          "inputs": {},
+          "outputs": {
+            "success": {
+              "label": "Success"
+            },
+            "error": {
+              "label": "Error"
+            }
+          },
+          "description": "Triggers the workflow manually.",
+          "showRunningStatus": false,
+          "parameters": {},
+          "_morphing": false
+        },
+        "selected": false
+      }
+    ],
+    "connections": [
+      {
+        "source": "f6f913db-7444-4b31-bdc6-d170819a292f",
+        "sourceHandle": "success",
+        "target": "eeaef849-e41a-4144-ba8e-eb81438b8cca",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__rvsjl7a29ydjp5wnhdjykm8ssuccess-ym13unt0kxhd690m0rail1jginput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "f6f913db-7444-4b31-bdc6-d170819a292f",
+        "sourceHandle": "success",
+        "target": "ed691a27-1ed1-46f6-b14c-501f42d8412c",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__rvsjl7a29ydjp5wnhdjykm8ssuccess-c9tms58p5hfsm19yh9sqx2j2input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "ed691a27-1ed1-46f6-b14c-501f42d8412c",
+        "sourceHandle": "success",
+        "target": "672c92cc-ba97-4d3b-b65a-4e897f7c4abf",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__c9tms58p5hfsm19yh9sqx2j2success-abq333y39ivjidtl839w9bpdinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "ed691a27-1ed1-46f6-b14c-501f42d8412c",
+        "sourceHandle": "success",
+        "target": "c348660d-de42-4306-b41f-8b4227819de8",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__c9tms58p5hfsm19yh9sqx2j2success-yq7lqrm8xm4yp2p870s0jl2sinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "6a4d771b-9fbf-4f21-a94d-b43ceb3bee23",
+        "sourceHandle": "success",
+        "target": "a66e7cde-c38f-4e0d-ac03-71f6e039fb60",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__lclt9sxslpc4r17j4qm980m9success-q0thlo65cnzestcah5djc4aqinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "14be30d9-6105-4028-baee-bff1533d2c62",
+        "sourceHandle": "success",
+        "target": "822aa91e-ca53-4571-826a-b9696f19726c",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__j7iu2c8g8w9yf6ue0j1h0g03success-bogc6qitgjiaaqbadvkozoc8input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "c348660d-de42-4306-b41f-8b4227819de8",
+        "sourceHandle": "true",
+        "target": "14be30d9-6105-4028-baee-bff1533d2c62",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__yq7lqrm8xm4yp2p870s0jl2strue-j7iu2c8g8w9yf6ue0j1h0g03input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "c348660d-de42-4306-b41f-8b4227819de8",
+        "sourceHandle": "false",
+        "target": "6a4d771b-9fbf-4f21-a94d-b43ceb3bee23",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__yq7lqrm8xm4yp2p870s0jl2sfalse-lclt9sxslpc4r17j4qm980m9input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "14be30d9-6105-4028-baee-bff1533d2c62",
+        "sourceHandle": "success",
+        "target": "c97cee65-65cd-4cf9-b185-723c698a82b9",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__j7iu2c8g8w9yf6ue0j1h0g03success-hkh8sdglk288trwqils7zjs9input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "c97cee65-65cd-4cf9-b185-723c698a82b9",
+        "sourceHandle": "success",
+        "target": "ce5f3cf1-79ba-41ff-9fac-9a1f0cc9d871",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__hkh8sdglk288trwqils7zjs9success-s2kgvll8gnx0jqis4jowiyh9input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "c97cee65-65cd-4cf9-b185-723c698a82b9",
+        "sourceHandle": "success",
+        "target": "a527a53c-9443-4ba7-b4e0-4584d1f24b65",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__hkh8sdglk288trwqils7zjs9success-v22wz9sffgjbsvojj9addb9zinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "a527a53c-9443-4ba7-b4e0-4584d1f24b65",
+        "sourceHandle": "true",
+        "target": "58e54403-7e47-4906-aea7-9c0114d4dd55",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__v22wz9sffgjbsvojj9addb9ztrue-en8ra89vmgdaqsgyw2cg41ztinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "58e54403-7e47-4906-aea7-9c0114d4dd55",
+        "sourceHandle": "success",
+        "target": "17fce00d-1cd2-407e-9b2a-43dd17aea714",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__en8ra89vmgdaqsgyw2cg41ztsuccess-p887i4ol43k4iu8wfwa3wm9xinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "58e54403-7e47-4906-aea7-9c0114d4dd55",
+        "sourceHandle": "success",
+        "target": "5deeec08-414e-4ce8-8939-dc8f5da53254",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__en8ra89vmgdaqsgyw2cg41ztsuccess-n4k5kirnop0kbksk2bnpd3zqinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "a527a53c-9443-4ba7-b4e0-4584d1f24b65",
+        "sourceHandle": "false",
+        "target": "17fce00d-1cd2-407e-9b2a-43dd17aea714",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__v22wz9sffgjbsvojj9addb9zfalse-p887i4ol43k4iu8wfwa3wm9xinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "17fce00d-1cd2-407e-9b2a-43dd17aea714",
+        "sourceHandle": "success",
+        "target": "3125e4cb-3e33-4e5e-b475-31bfb735ccae",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__p887i4ol43k4iu8wfwa3wm9xsuccess-mmdwfkkmqw8cv3k30d2f7chyinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "17fce00d-1cd2-407e-9b2a-43dd17aea714",
+        "sourceHandle": "success",
+        "target": "57a256fa-3f73-47d9-a78d-e8a4a6848528",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__p887i4ol43k4iu8wfwa3wm9xsuccess-wmbag8uhilq436r4474bq8k5input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "57a256fa-3f73-47d9-a78d-e8a4a6848528",
+        "sourceHandle": "true",
+        "target": "d2009e38-eaa5-4140-ad0a-a09ea199613f",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__wmbag8uhilq436r4474bq8k5true-h28ch7fshydlnrrwddg6sueuinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "57a256fa-3f73-47d9-a78d-e8a4a6848528",
+        "sourceHandle": "false",
+        "target": "34a937c3-66d0-473d-88c1-168e5c84c577",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__wmbag8uhilq436r4474bq8k5false-ikqyqvt6iqfv5lvgt9w3w52cinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "d2009e38-eaa5-4140-ad0a-a09ea199613f",
+        "sourceHandle": "success",
+        "target": "ebbbbe43-0115-43f1-a3b6-3a87691e19e6",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__h28ch7fshydlnrrwddg6sueusuccess-qcfi0vfc6rntruv48cxd7kv4input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "a4bfa0d2-65da-44f0-9fff-4d4476dc3fad",
+        "sourceHandle": "success",
+        "target": "d8e7481c-71f3-4cd8-8f1f-d048691f3958",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__c3ku5lby47pkyqlxzpmta6ofsuccess-tg4mzsypekq4ibmz8i75qsm1input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "34a937c3-66d0-473d-88c1-168e5c84c577",
+        "sourceHandle": "success",
+        "target": "0bb03bfe-e54f-4a8f-a919-4c41fe6cda9e",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__ikqyqvt6iqfv5lvgt9w3w52csuccess-f6co5vjqiooa9mss7ysd4hgzinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "bb00d793-4ebf-4f40-b249-84a7df056161",
+        "sourceHandle": "success",
+        "target": "3a4a1cfc-6caa-4dd4-8ed8-290ea14a5537",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__ro4b1dcxyw979yc2puv1ro7fsuccess-nekf43zouq8wnbfhv4tnbt9cinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "c9789abe-27a5-4101-b5a2-8d141fdccd33",
+        "sourceHandle": "success",
+        "target": "516bd4e3-56e0-4df9-939d-5ce499041307",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__tkmv0xd5qhazgwmyav80x4gesuccess-eqp3yhrwajqarqqseog94gp3input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "6f1327b6-27da-4abe-a6a1-00766ca92e64",
+        "sourceHandle": "llm",
+        "target": "e75ce7ac-a21d-4666-8bbe-727ba4eefc0d",
+        "targetHandle": "llm",
+        "type": "agentConnection",
+        "id": "xy-edge__t1uzdtd7ixulqoz3xyqnc7dvllm-prvczmtdm981xn1vrw3g54p2llm",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "bb00d793-4ebf-4f40-b249-84a7df056161",
+        "sourceHandle": "success",
+        "target": "96a76760-181f-41a0-8d4c-dd5ca8b44373",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__ro4b1dcxyw979yc2puv1ro7fsuccess-amgbbyn0hbb1gq0w0956frczinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "96a76760-181f-41a0-8d4c-dd5ca8b44373",
+        "sourceHandle": "success",
+        "target": "60f9d1d6-a46e-4cfa-9321-76c7bdcc0341",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__amgbbyn0hbb1gq0w0956frczsuccess-cs-at-criticalinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "60f9d1d6-a46e-4cfa-9321-76c7bdcc0341",
+        "sourceHandle": "success",
+        "target": "3214f1e8-f8fa-4b58-b75f-581d4d784465",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__cs-at-criticalsuccess-ei32vobheay0g3w1v73q3dyoinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "a4bfa0d2-65da-44f0-9fff-4d4476dc3fad",
+        "sourceHandle": "success",
+        "target": "8a068c14-c526-4900-8ece-7d3eeb9d8c60",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__c3ku5lby47pkyqlxzpmta6ofsuccess-u3w7mvnjrhv2sbwta2c1ih6xinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "8a068c14-c526-4900-8ece-7d3eeb9d8c60",
+        "sourceHandle": "success",
+        "target": "c0bbe829-7197-4e32-a090-327291319d4c",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__u3w7mvnjrhv2sbwta2c1ih6xsuccess-vpkv1jnb8gdqdqotvz7f6a12input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "8a068c14-c526-4900-8ece-7d3eeb9d8c60",
+        "sourceHandle": "success",
+        "target": "1402366e-90b3-4831-92ae-398be6d8e925",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__u3w7mvnjrhv2sbwta2c1ih6xsuccess-l5ezn48o7jic83syaepy0596input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "c0bbe829-7197-4e32-a090-327291319d4c",
+        "sourceHandle": "success",
+        "target": "8b734959-d1c8-4b9a-a062-22dc01cb861e",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__vpkv1jnb8gdqdqotvz7f6a12success-k95m7wdmni82o4tcassxopciinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "e75ce7ac-a21d-4666-8bbe-727ba4eefc0d",
+        "sourceHandle": "success",
+        "target": "ae91e37d-feaa-49ad-bd79-6b12809fa299",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__prvczmtdm981xn1vrw3g54p2success-cs-handover-reportinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "96a76760-181f-41a0-8d4c-dd5ca8b44373",
+        "sourceHandle": "success",
+        "target": "d5bkqrxgpgwfzivwhtpyzk3o",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__96a76760-181f-41a0-8d4c-dd5ca8b44373success-d5bkqrxgpgwfzivwhtpyzk3oinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "pzx7cp6pxeum7vvnst2whrk8",
+        "sourceHandle": "success",
+        "target": "lvrvvuskl8o9t5fyzsyw0y1g",
+        "targetHandle": "input1",
+        "type": "directed",
+        "id": "xy-edge__pzx7cp6pxeum7vvnst2whrk8success-lvrvvuskl8o9t5fyzsyw0y1ginput1",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "q39orwrmgncu7tcwqq7v035x",
+        "sourceHandle": "success",
+        "target": "lvrvvuskl8o9t5fyzsyw0y1g",
+        "targetHandle": "input2",
+        "type": "directed",
+        "id": "xy-edge__q39orwrmgncu7tcwqq7v035xsuccess-lvrvvuskl8o9t5fyzsyw0y1ginput2",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "lvrvvuskl8o9t5fyzsyw0y1g",
+        "sourceHandle": "success",
+        "target": "s0h95nazfrg5k3zy2hdyeycg",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__lvrvvuskl8o9t5fyzsyw0y1gsuccess-s0h95nazfrg5k3zy2hdyeycginput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "q39orwrmgncu7tcwqq7v035x",
+        "sourceHandle": "success",
+        "target": "hmthkjx5qze29b7vwu3a4fue",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__q39orwrmgncu7tcwqq7v035xsuccess-hmthkjx5qze29b7vwu3a4fueinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "s0h95nazfrg5k3zy2hdyeycg",
+        "sourceHandle": "success",
+        "target": "tcyoatizp7dsapnpul0vuhdz",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__s0h95nazfrg5k3zy2hdyeycgsuccess-tcyoatizp7dsapnpul0vuhdzinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "s0h95nazfrg5k3zy2hdyeycg",
+        "sourceHandle": "success",
+        "target": "nw8tgh3i64zbkati0jrcsqvq",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__s0h95nazfrg5k3zy2hdyeycgsuccess-nw8tgh3i64zbkati0jrcsqvqinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "fwynxkq03dlsnoq23uk6f9pc",
+        "sourceHandle": "llm",
+        "target": "nw8tgh3i64zbkati0jrcsqvq",
+        "targetHandle": "llm",
+        "type": "agentConnection",
+        "id": "xy-edge__fwynxkq03dlsnoq23uk6f9pcllm-nw8tgh3i64zbkati0jrcsqvqllm",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "nw8tgh3i64zbkati0jrcsqvq",
+        "sourceHandle": "success",
+        "target": "hefo7j60b5f8p9stsndk4pxh",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__nw8tgh3i64zbkati0jrcsqvqsuccess-hefo7j60b5f8p9stsndk4pxhinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "hefo7j60b5f8p9stsndk4pxh",
+        "sourceHandle": "success",
+        "target": "s6qcnnzbrboeknrztbgvj6z8",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__hefo7j60b5f8p9stsndk4pxhsuccess-s6qcnnzbrboeknrztbgvj6z8input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "tt9tkqmi24dtamkzkoo1888s",
+        "sourceHandle": "success",
+        "target": "pzx7cp6pxeum7vvnst2whrk8",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__tt9tkqmi24dtamkzkoo1888ssuccess-pzx7cp6pxeum7vvnst2whrk8input",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "tt9tkqmi24dtamkzkoo1888s",
+        "sourceHandle": "success",
+        "target": "q39orwrmgncu7tcwqq7v035x",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__tt9tkqmi24dtamkzkoo1888ssuccess-q39orwrmgncu7tcwqq7v035xinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "bl7qxksps9gor0flk51gb46q",
+        "sourceHandle": "success",
+        "target": "q39orwrmgncu7tcwqq7v035x",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__bl7qxksps9gor0flk51gb46qsuccess-q39orwrmgncu7tcwqq7v035xinput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "q39orwrmgncu7tcwqq7v035x",
+        "sourceHandle": "success",
+        "target": "s0h95nazfrg5k3zy2hdyeycg",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__q39orwrmgncu7tcwqq7v035xsuccess-s0h95nazfrg5k3zy2hdyeycginput",
+        "data": {
+          "isAnimated": false
+        }
+      },
+      {
+        "source": "nw8tgh3i64zbkati0jrcsqvq",
+        "sourceHandle": "success",
+        "target": "s6qcnnzbrboeknrztbgvj6z8",
+        "targetHandle": "input",
+        "type": "directed",
+        "id": "xy-edge__nw8tgh3i64zbkati0jrcsqvqsuccess-s6qcnnzbrboeknrztbgvj6z8input",
+        "data": {
+          "isAnimated": false
+        }
+      }
+    ],
+    "status": "stopped",
+    "tracingEnabled": true,
+    "userId": "2bbaf174-0590-4e8d-9d54-bb977f45df2e",
+    "version": 1,
+    "createdAt": 1788808787316,
+    "updatedAt": 1788823229570,
+    "publishedNames": [],
+    "previousStatus": "running"
+  }
+]
