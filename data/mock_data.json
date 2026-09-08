@@ -1,0 +1,29 @@
+{
+    "taskId": "CS-001",
+    "propertyId": "APT-04",
+    "bookingRef": "BK-221",
+    "taskType": "cleaning",
+    "status": "NEW",
+    "agent": null,
+    "checkIn": "2026-09-08T15:00:00Z",
+    "vipGuest": true,
+    "incidentReported": false,
+    "incidentDetail": "",
+    "qcStatus": "pending",
+    "notes": "Guest reported broken hair dryer"
+}
+.....
+{
+  "taskId": "CS-004",
+  "propertyId": "APT-08",
+  "bookingRef": "BK-305",
+  "taskType": "cleaning",
+  "status": "NEW",
+  "agent": null,
+  "checkIn": "2026-09-10T14:00:00Z",
+  "vipGuest": false,
+  "incidentReported": false,
+  "incidentDetail": "",
+  "qcStatus": "pending",
+  "notes": "Standard cleaning request"
+}
